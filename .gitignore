@@ -30,7 +30,7 @@
 
 # Executables
 *megaphone
-*.PhoneBook
+*PhoneBook
 *.exe
 *.out
 *.app
