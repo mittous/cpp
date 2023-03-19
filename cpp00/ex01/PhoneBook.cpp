@@ -6,7 +6,7 @@
 /*   By: imittous <imittous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 23:51:15 by imittous          #+#    #+#             */
-/*   Updated: 2023/03/18 22:51:55 by imittous         ###   ########.fr       */
+/*   Updated: 2023/03/19 12:22:38 by imittous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,22 @@ int main(void) {
 			exit(0);
 		else if (str == "ADD")
 		{
-			// std::cout << i<<"\n";
 			std::cout<<"enter first name: ";
 			getline(std::cin, str);
-			phonbook.contacts[i].set_first_name(str);
-
+			if (str.empty())
+			{
+				phonbook.contacts[i].set_first_name(str.substr(0,9) + '.');
+				std::cout<<"you didn't fill first name can you try againe\n";
+				continue ;
+			}
 			std::cout<<"enter last name: ";
 			getline(std::cin, str);
 			phonbook.contacts[i].set_last_name(str);
-			
+
 			std::cout<<"enter nickname: ";
 			getline(std::cin, str);
 			phonbook.contacts[i].set_nickname(str);
-			
+
 			std::cout<<"enter phone number: ";
 			getline(std::cin, str);
 			phonbook.contacts[i].set_phone_number(str);

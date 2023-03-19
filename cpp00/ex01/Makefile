@@ -6,14 +6,15 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 INC = PhoneBook.hpp
 
-SRC =	PhoneBook.cpp
+SRC =	PhoneBook.cpp \
+		PhoneBook_utils.cpp
 
-SOFILES = $(SRC:.cpp=.o)
+SFILES = $(SRC:.cpp=.o)
 
 all : $(NAME)
 
-$(NAME) : $(SOFILES) $(INC)
-	$(CC)  $(CXXFLAGS) $(SOFILES) -o $(NAME)
+$(NAME) : $(SFILES) $(INC)
+	$(CC)  $(CXXFLAGS) $(SFILES) -o $(NAME)
 
 clean :
 	@-rm -rf *.o
