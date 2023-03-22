@@ -6,7 +6,7 @@
 /*   By: imittous <imittous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 23:51:15 by imittous          #+#    #+#             */
-/*   Updated: 2023/03/22 16:17:51 by imittous         ###   ########.fr       */
+/*   Updated: 2023/03/22 16:53:43 by imittous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int main(void) {
 				contact_size = 8;
 			i++;
 		}
-		else if (str == "S")
+		else if (str == "SEARCH")
 		{
 			ft_phonebook_design();
 			for (int j = 0; j < contact_size; j++)
