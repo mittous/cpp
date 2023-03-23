@@ -6,7 +6,7 @@
 /*   By: imittous <imittous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 23:51:15 by imittous          #+#    #+#             */
-/*   Updated: 2023/03/22 16:53:43 by imittous         ###   ########.fr       */
+/*   Updated: 2023/03/23 13:57:39 by imittous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,24 @@ int main(void) {
 			for (int j = 0; j < contact_size; j++)
 			{
 				std::cout <<"|" << std::setfill(' ') << std::setw (10)<< j<<'|' << std::setfill(' ') << std::setw (10) << \
-					(phonbook.contacts[j].get_first_name().length() < 10 ? phonbook.contacts[j].get_first_name() : phonbook.contacts[j].get_first_name().substr(0,9) + '.' ) << \
+					(phonbook.contacts[j].get_first_name().length() < 10 ? phonbook.contacts[j].get_first_name() :\
+					phonbook.contacts[j].get_first_name().substr(0,9) + '.' ) << \
 					'|'<< std::setfill(' ') << std::setw (10) << \
-					(phonbook.contacts[j].get_last_name().length() < 10 ? phonbook.contacts[j].get_last_name() : phonbook.contacts[j].get_last_name().substr(0,9) + '.' ) << \
+					(phonbook.contacts[j].get_last_name().length() < 10 ? phonbook.contacts[j].get_last_name() :\
+					phonbook.contacts[j].get_last_name().substr(0,9) + '.' ) << \
 					'|' << std::setfill(' ') << std::setw (10) << \
-					(phonbook.contacts[j].get_nickname().length() < 10 ? phonbook.contacts[j].get_nickname() : phonbook.contacts[j].get_nickname().substr(0,9) + '.' ) << "|\n";
+					(phonbook.contacts[j].get_nickname().length() < 10 ? phonbook.contacts[j].get_nickname() :\
+					phonbook.contacts[j].get_nickname().substr(0,9) + '.' ) << "|\n";
 					std::cout << ' ' << std::setfill ('_') << std::setw (44)<<"\n";
 			}
-			std::cout<< "Enter the index of the contact you want\n";
 			while(1)
 			{
+				if (contact_size == 0)
+				{
+					std::cout << "there is no contact yet\n";
+					break ;
+				}
+				std::cout<< "Enter the index of the contact you want\n";
 				getline(std::cin, str);
 				if (std::cin.eof())
 					exit(0);
@@ -71,6 +79,8 @@ int main(void) {
 					index = str[0] - '0';
 					if (index >= 0&& index < contact_size)
 						break;
+					else
+						std::cout << "index is out of range or wrong\nplease try again\n";
 				}
 				else
 					std::cout << "index is out of range or wrong\nplease try again\n";
@@ -83,7 +93,6 @@ int main(void) {
 				std::cout << "phone number: " << phonbook.contacts[index].get_phone_number() << '\n';
 				std::cout << "darkest secret: " << phonbook.contacts[index].get_darkest_secre() << '\n';
 			}
-			std::cin.ignore();
 		}
 		if (i == 8)
 			i = 0;

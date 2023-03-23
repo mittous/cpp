@@ -11,8 +11,6 @@ private:
     std::string phone_number;
     std::string darkest_secre;
 public:
-    // contact(/* args */);
-    // ~contact();
 
     std::string get_first_name();
     void set_first_name(std::string value);
@@ -33,9 +31,7 @@ public:
 
 class PhoneBook
 {
-private:
-    /* data */
-public:
-    contact contacts[8];
-    void	ft_add(int index);
+    public:
+        contact contacts[8];
+        void	ft_add(int index);
 };
