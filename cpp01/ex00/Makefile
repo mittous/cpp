@@ -1,15 +1,16 @@
 NAME = zombie
 
-CC = c++
+CC = g++
 
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-INC = Z.hpp
+INC = Zombie.hpp
 
-SRC =	zombie.cpp \
+SRC =	Zombie.cpp \
+		main.cpp \
 		newZombie.cpp \
 		randomChump.cpp \
-		main.cpp
+
 
 SFILES = $(SRC:.cpp=.o)
 

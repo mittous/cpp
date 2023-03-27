@@ -8,30 +8,32 @@
 class Zombie
 {
 private:
-    std::string name;
+	std::string name;
 public:
-    Zombie(/* args */);
-    ~Zombie();
+	Zombie(std::string _name);
+	~Zombie();
 
-    void announce(void);
+	void    announce(void);
 };
 
-Zombie::Zombie(/* args */)
-{
-    std::cout<< "constractor called" << std::endl;
-}
-
-Zombie::~Zombie()
-{
-    std::cout << "distractor called" << std::endl;
-}
-/****************************_announce_****************************/
-void    Zombie::announce(void)
-{
-    std::cout << this->name << ": BraiiiiiiinnnzzzZ..."<<std::endl;
-}
 
 
+
+/****************************_randomChump_****************************/
+
+void randomChump(std::string name);
+
+/****************************_randomChump_****************************/
+
+
+
+
+
+/****************************_newZombie_****************************/
+
+Zombie* newZombie( std::string name);
+
+/****************************_newZombie_****************************/
 
 
 # endif
