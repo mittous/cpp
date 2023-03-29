@@ -4,20 +4,21 @@ CC = c++
 
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-INC =	HumanA.hpp \
-		HumanB.hpp \
-		Weapon.hpp \
+# INC =	HumanA.hpp \
+# 		HumanB.hpp \
+# 		Weapon.hpp \
 
 SRC =	Weapon.cpp \
 		HumanA.cpp \
 		HumanB.cpp \
+		main.cpp \
 
 
 SFILES = $(SRC:.cpp=.o)
 
 all : $(NAME)
 
-$(NAME) : $(SFILES) $(INC)
+$(NAME) : $(SFILES)
 	$(CC)  $(CXXFLAGS) $(SFILES) -o $(NAME)
 
 clean :
