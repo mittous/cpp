@@ -1,15 +1,16 @@
-NAME = zombie
+NAME = Weapon
 
 CC = c++
 
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-INC = Zombie.hpp
+INC =	HumanA.hpp \
+		HumanB.hpp \
+		Weapon.hpp \
 
-SRC =	Zombie.cpp \
-		main.cpp \
-		newZombie.cpp \
-		randomChump.cpp \
+SRC =	Weapon.cpp \
+		HumanA.cpp \
+		HumanB.cpp \
 
 
 SFILES = $(SRC:.cpp=.o)
@@ -23,5 +24,6 @@ clean :
 	@-rm -rf *.o
 
 fclean : clean
-	@-rm -rf zombie
+	@-rm -rf Weapon
+
 re : fclean all

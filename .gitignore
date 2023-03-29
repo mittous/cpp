@@ -31,6 +31,8 @@
 # Executables
 *megaphone
 *PhoneBook
+*zombie
+*brain
 *.exe
 *.out
 *.app
