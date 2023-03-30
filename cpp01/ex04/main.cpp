@@ -9,7 +9,7 @@ int main (int ac, char **av)
 		std::ifstream myfile;
 		std::string fileContent;
 		std::string new_string;
-		int indx = 0;
+		unsigned long indx = 0;
 		myfile.open(av[1]);
 		getline(myfile, fileContent, '\0');
 
@@ -19,12 +19,21 @@ int main (int ac, char **av)
 			if (pos)
 			{
 				new_string += fileContent.substr(indx, pos);
-				indx = pos+strlen(av[1]);
-			}
+				indx = pos+strlen(av[2]);
+				fileContent = fileContent.substr(indx);
+				
+				
+				
+				std::cout << indx << std::endl;
+			}   
+			std::cout << fileContent << "\n";
+
+			// else
+
 			// if (pos!=std::string::npos)
 
 
-			indx++;
+			// indx++;
 		}
 		
 		std::ofstream dupfile("new_file.txt");
@@ -32,4 +41,3 @@ int main (int ac, char **av)
 		dupfile.close();
 	}
 }
-		// std::cout << new_string;
