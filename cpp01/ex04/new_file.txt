@@ -1,0 +1,5 @@
+NAME = sed
+
+CC = c++
+
+CXXFLAGS = -W
