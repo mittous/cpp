@@ -8,36 +8,33 @@ int main (int ac, char **av)
 	{
 		std::ifstream myfile;
 		std::string fileContent;
-		std::string new_string;
+		std::string newString;
 		unsigned long indx = 0;
+		size_t pos =1;
+		std::ofstream dupfile("ssd");
+		bool check = false;
+		
+		
 		myfile.open(av[1]);
 		getline(myfile, fileContent, '\0');
-
-		while (indx < fileContent.length())
+		
+		
+		while ((pos = fileContent.find(av[2])))
 		{
-			size_t pos = fileContent.find(av[2]);
-			if (pos)
+			std::cout << "kna hna \n";
+			if (pos != fileContent.npos)
 			{
-				new_string += fileContent.substr(indx, pos);
-				indx = pos+strlen(av[2]);
-				fileContent = fileContent.substr(indx);
+				check = true;
+				newString.substr(indx, pos+indx) + av[3];
 				
-				
-				
-				std::cout << indx << std::endl;
-			}   
-			std::cout << fileContent << "\n";
-
-			// else
-
-			// if (pos!=std::string::npos)
-
-
-			// indx++;
+				// fileContent = fileContent.substr(pos+strlen(av[2]));
+			}
+			else 
+				break;
 		}
 		
-		std::ofstream dupfile("new_file.txt");
-		dupfile << new_string;
-		dupfile.close();
+		if (check == false)
+			newString = fileContent;
+		dupfile << newString;
 	}
 }
