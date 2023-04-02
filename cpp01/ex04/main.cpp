@@ -9,32 +9,33 @@ int main (int ac, char **av)
 		std::ifstream myfile;
 		std::string fileContent;
 		std::string newString;
-		unsigned long indx = 0;
-		size_t pos =1;
-		std::ofstream dupfile("ssd");
-		bool check = false;
-		
-		
+		size_t pos;
+		std::string replaceFileName = std::string(av[1]) + ".replace";
+		std::ofstream replace(replaceFileName);
+
 		myfile.open(av[1]);
-		getline(myfile, fileContent, '\0');
-		
-		
-		while ((pos = fileContent.find(av[2])))
+		if (!myfile.is_open())
 		{
-			std::cout << "kna hna \n";
+			std::cout << "Error: File not found" << std::endl;
+			return (1);
+		}
+		getline(myfile, fileContent, '\0');
+
+		while (av[2][0] != '\0' && av[3][0] != '\0')
+		{
+			pos = fileContent.find(av[2]);
 			if (pos != fileContent.npos)
 			{
-				check = true;
-				newString.substr(indx, pos+indx) + av[3];
-				
-				// fileContent = fileContent.substr(pos+strlen(av[2]));
+				newString += fileContent.substr(0, pos) + av[3];
+				fileContent = fileContent.substr(pos + strlen(av[2]), fileContent.length());
 			}
-			else 
-				break;
+			else
+			{
+				newString += fileContent;
+				replace << newString;
+				return 1;
+			}
 		}
-		
-		if (check == false)
-			newString = fileContent;
-		dupfile << newString;
+		replace << fileContent;
 	}
 }
