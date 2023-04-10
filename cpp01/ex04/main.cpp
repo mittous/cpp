@@ -20,8 +20,7 @@ int main (int ac, char **av)
 			return (1);
 		}
 		getline(myfile, fileContent, '\0');
-
-		while (av[2][0] != '\0' && av[3][0] != '\0')
+		while (av[2][0] != '\0')
 		{
 			pos = fileContent.find(av[2]);
 			if (pos != fileContent.npos)
