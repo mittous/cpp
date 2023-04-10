@@ -22,16 +22,41 @@ public:
     float	toFloat(void) const;
     int		toInt(void) const;
 
-    //assgin op overload
+    // assgin op overload
     Fixed&	operator=(const Fixed& other);
 
-    //6 comparison operators: >, <, >=, <=, == and !=
-    bool	operator>(const Fixed& other);
-    bool	operator<(const Fixed& other);
-    bool	operator>=(const Fixed& other);
-    bool	operator<=(const Fixed& other);
-    bool	operator==(const Fixed& other);
-    bool	operator!=(const Fixed& other);
+    // 6 comparison operators: >, <, >=, <=, == and !=
+    bool	operator>(const Fixed& other)  const;
+    bool	operator<(const Fixed& other)  const;
+    bool	operator>=(const Fixed& other) const;
+    bool	operator<=(const Fixed& other) const;
+    bool	operator==(const Fixed& other) const;
+    bool	operator!=(const Fixed& other) const;
+    // 6 comparison operators: >, <, >=, <=, == and !=
+    
+    
+    // The 4 arithmetic operators: +, -, *, and /
+    Fixed   operator+(const Fixed& obj2);
+    Fixed   operator-(const Fixed& obj2);
+    Fixed   operator*(const Fixed& obj2);
+    Fixed   operator/(const Fixed& obj2);
+    // The 4 arithmetic operators: +, -, *, and /
+
+
+    // The 4 increment/decrement operators
+    Fixed   operator++(int);
+    Fixed   operator++();
+    Fixed   operator--(int);
+    Fixed   operator--();
+    // The 4 increment/decrement operators
+
+
+    // The 4 const(min/max), non-const(min/max) operators
+    static Fixed& min(Fixed& obj1, Fixed& obj2);
+    static const Fixed& min(const Fixed& obj1, const Fixed& obj2);
+    static Fixed& max(Fixed& obj1, Fixed& obj2);
+    static const Fixed& max(const Fixed& obj1, const Fixed& obj2);
+    // The 4 const(min/max), non-const(min/max) operators
 
 };
 

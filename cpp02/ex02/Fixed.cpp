@@ -3,42 +3,35 @@
 
 Fixed::Fixed() : value_(0)
 {
-    std::cout << "\e[0;33mDefault constructor called\e[0m" << std::endl;
 }
 
 Fixed::Fixed(const int _value)
 {
-    std::cout << "\e[0;33mInt constructor called\e[0m" << std::endl;
 	this->value_ = _value * 256;
 }
 
 Fixed::Fixed(const float _value)
 {
-    std::cout << "\e[0;33mFloat constructor called\e[0m" << std::endl;
 	value_ = roundf(_value * 256);
 }
 
 Fixed::Fixed(const Fixed& other)
 {
-    std::cout << "\e[0;33mCopy constructor called\e[0m" << std::endl;
 	value_ = other.value_;
 }
 
 Fixed::~Fixed()
 {
-    std::cout << "\e[0;31mDestructor called\e[0m" << std::endl;
 }
 
 
 int Fixed::getRawBits(void) const
 {
-    std::cout << "\e[0;32mgetRawBits member function called\e[0m" << std::endl;
     return value_;
 }
 
 void Fixed::setRawBits(int const raw) 
 {
-    std::cout << "\e[0;32msetRawBits member function called\e[0m" << std::endl;
     value_ = raw;
 }
 
@@ -62,39 +55,132 @@ std::ostream& operator<<(std::ostream& os, const Fixed& fixed) {
 
 Fixed& Fixed::operator=(const Fixed& other)
 {
-    std::cout << "\e[0;33mCopy assignment operator called\e[0m" << std::endl;
     if (this != &other) 
         value_ = other.value_;
     return *this;
 }
 
-bool	Fixed::operator>(const Fixed& other)
+/*********** comparison operators: >, <, >=, <=, == and != *************/
+bool	Fixed::operator>(const Fixed& other) const
 {
     return(this->value_ > other.value_);
 }
 
-bool	Fixed::operator<(const Fixed& other)
+bool	Fixed::operator<(const Fixed& other) const
 {
     return(this->value_ < other.value_);
 }
 
-bool	Fixed::operator>=(const Fixed& other)
+bool	Fixed::operator>=(const Fixed& other) const
 {
     return(this->value_ >= other.value_);
 }
 
-bool	Fixed::operator<=(const Fixed& other)
+bool	Fixed::operator<=(const Fixed& other) const
 {
     return(this->value_ <= other.value_);
 }
 
-bool	Fixed::operator==(const Fixed& other)
+bool	Fixed::operator==(const Fixed& other) const
 {
     return(this->value_ == other.value_);
 }
 
-bool	Fixed::operator!=(const Fixed& other)
+bool	Fixed::operator!=(const Fixed& other) const
 {
     return(this->value_ != other.value_);
 }
 
+/*********** comparison operators: >, <, >=, <=, == and != *************/
+
+
+
+/**************** arithmetic operators: +, -, *, and *****************/
+Fixed  Fixed::operator+(const Fixed& obj2)
+{
+    return (this->toFloat() + obj2.toFloat());
+}
+
+Fixed  Fixed::operator-(const Fixed& obj2)
+{
+    return (this->toFloat() - obj2.toFloat());
+}
+
+Fixed  Fixed::operator*(const Fixed& obj2)
+{
+    return ((this->toFloat() * obj2.toFloat()));
+}
+
+Fixed  Fixed::operator/(const Fixed& obj2)
+{
+    return (this->toFloat() / obj2.toFloat());
+}
+
+/**************** arithmetic operators: +, -, *, and *****************/
+
+
+
+
+/**************** const(min/max) non-const(min/max) *****************/
+
+Fixed& Fixed::min(Fixed& obj1, Fixed& obj2)
+{
+    if (obj1 > obj2)
+        return obj2;
+    return obj1;
+}
+
+const Fixed& Fixed::min(const Fixed& obj1, const Fixed& obj2)
+{
+    if (obj1 > obj2)
+        return obj2;
+    return obj1;
+}
+
+Fixed& Fixed::max(Fixed& obj1, Fixed& obj2)
+{
+    if (obj1 < obj2)
+        return obj2;
+    return obj1;
+}
+
+const Fixed& Fixed::max(const Fixed& obj1, const Fixed& obj2)
+{
+    if (obj1 < obj2)
+        return obj2;
+    return obj1;
+}
+
+/**************** const(min/max) non-const(min/max) *****************/
+
+
+
+/**************** post/pre(increment/decremnt) *****************/
+
+
+Fixed   Fixed::operator++(int)
+{
+    Fixed tmp (*this);
+    ++this->value_;
+    return (tmp);
+}
+
+Fixed   Fixed::operator++()
+{
+    this->value_++;
+    return (*this);
+}
+
+Fixed   Fixed::operator--(int)
+{
+    Fixed tmp (*this);
+    ++this->value_;
+    return (tmp);
+}
+
+Fixed   Fixed::operator--()
+{
+    this->value_++;
+    return (*this);
+}
+/**************** post/pre(increment/decremnt) *****************/
