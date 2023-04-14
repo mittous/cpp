@@ -16,22 +16,18 @@ public:
 
 	// canon
     Fixed();
-    ~Fixed();
+    Fixed(const float _value);
     Fixed(const Fixed& other);
-    Fixed&	operator=(const Fixed& other);
+    Fixed(const int _value);
+    ~Fixed();
     
-	// set/get
 	int		getRawBits(void) const;
     void	setRawBits(int const raw);
 
-
-	// overload constr
-    Fixed(const int _value);
-    Fixed(const float _value);
-	
-	//requir
     float	toFloat(void) const;
     int		toInt(void) const;
+	
+    Fixed&	operator=(const Fixed& other);
 };
 
 std::ostream& operator<<(std::ostream& os, const Fixed& fixed);

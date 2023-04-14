@@ -29,7 +29,7 @@ void ClapTrap::attack(const std::string& target)
     if (hitPoint && energy)
     {
         energy--;
-        std::cout<< name <<" attacks "<< target <<", causing "<< _attack_damage << " points of damage🤕"<< std::endl; 
+        std::cout<< "claptrap" <<name <<" attacks "<< target <<", causing "<< _attack_damage << " points of damage🤕"<< std::endl; 
     }
     else
         std::cout<<  name << " is died💀."<< std::endl;

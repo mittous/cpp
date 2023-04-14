@@ -3,8 +3,8 @@
 
 int main()
 {
-    std::string str = "HELLO";
-    int i;
-    !strcmp("hello", "hello") && (i = 10);
+    int i = 0;
+
     std::cout << i;
+    return 0;
 }

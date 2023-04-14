@@ -1,10 +1,10 @@
 #include "ClapTrap.hpp"
 
 ClapTrap::ClapTrap(std::string _name) : name(_name), hitPoint(10), energy(10), _attack_damage(0){
-    std::cout << "\e[0;33mDefault Constructor called of ClapTrap\e[0m" << std::endl;
+    std::cout << "\e[0;33mDefault constractor been called.\e[0m" << std::endl;
 }
 ClapTrap::~ClapTrap(){
-    std::cout << "\e[0;31mDestructor called of ClapTrap\e[0m" <<std::endl;
+    std::cout << "\e[0;31mdestructor been called.\e[0m"<<std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &other)
@@ -29,19 +29,19 @@ void ClapTrap::attack(const std::string& target)
     if (hitPoint && energy)
     {
         energy--;
-        std::cout<< name <<" attacks "<< target <<", causing "<< _attack_damage << " points of damage🤕"<< std::endl; 
+        std::cout<<"ClapTrap "<< name <<" attacks "<< target <<", causing "<< _attack_damage << " points of damage🤕"<< std::endl; 
     }
     else
-        std::cout<<  name << " is died💀."<< std::endl;
+        std::cout<<"ClapTrap " << name << " is died💀."<< std::endl;
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
     hitPoint -= amount;
     if (hitPoint > 0)
-        std::cout<< name <<" take amount of "<< amount <<" in damage🤕."<< std::endl; 
+        std::cout<<"ClapTrap "<< name <<" take amount of "<< amount <<" in damage🤕."<< std::endl; 
     else
-        std::cout<<  name << " is died💀."<< std::endl;
+        std::cout<<"ClapTrap " << name << " is died💀."<< std::endl;
 
 }
 
@@ -51,9 +51,9 @@ void ClapTrap::beRepaired(unsigned int amount)
     {
         hitPoint += amount;
         energy--;
-        std::cout<< name <<" repaired "<< amount <<" and have now "<< hitPoint << " hitPoint 🔋"<< std::endl; 
+        std::cout<<"ClapTrap "<< name <<" repaired "<< amount <<" and have now "<< hitPoint << " hitPoint 🔋"<< std::endl; 
     }
     else
-        std::cout<<  name << " is died💀."<< std::endl;
+        std::cout<<"ClapTrap " << name << " is died💀."<< std::endl;
 
 }

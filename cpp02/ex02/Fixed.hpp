@@ -15,7 +15,7 @@ public:
     Fixed();
     Fixed(const Fixed& other);
     Fixed(const int _value);
-    Fixed(const float _value);	
+    Fixed(const float _value);
     ~Fixed();
 	int		getRawBits(void) const;
     void	setRawBits(int const raw);
@@ -24,7 +24,7 @@ public:
 
     // assgin op overload
     Fixed&	operator=(const Fixed& other);
-
+    a < b;
     // 6 comparison operators: >, <, >=, <=, == and !=
     bool	operator>(const Fixed& other)  const;
     bool	operator<(const Fixed& other)  const;
