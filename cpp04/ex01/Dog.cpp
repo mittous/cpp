@@ -12,7 +12,6 @@ Dog::Dog()
 Dog::Dog(const Dog &copy)
 {
 	std::cout << "\e[0;33mCopy Constructor called of Dog\e[0m" << std::endl;
-	*this = copy;
 	dogBrain = new Brain();
 }
 
@@ -20,8 +19,8 @@ Dog::Dog(const Dog &copy)
 // Destructor
 Dog::~Dog()
 {
-	delete dogBrain;
 	std::cout << "\e[0;31mDestructor called of Dog\e[0m" << std::endl;
+	delete dogBrain;
 }
 
 
