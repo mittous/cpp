@@ -14,7 +14,6 @@ Cat::Cat(const Cat &copy)
 	*this = copy;
 }
 
-
 // Destructor
 Cat::~Cat()
 {

@@ -22,7 +22,6 @@ Cat::~Cat()
 	delete catBrain;
 }
 
-
 // Operators
 Cat & Cat::operator=(const Cat &assign)
 {
