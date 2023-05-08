@@ -1,4 +1,4 @@
-NAME = world_on_fire
+NAME = abstractClass
 
 CC = c++
 
@@ -24,6 +24,6 @@ clean :
 	@rm -rf *.o
 
 fclean : clean
-	@rm -rf world_on_fire
+	@rm -rf abstractClass
 
 re : fclean all

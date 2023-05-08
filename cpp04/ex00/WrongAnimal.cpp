@@ -4,7 +4,7 @@
 WrongAnimal::WrongAnimal()
 {
 	std::cout << "\e[0;33mDefault Constructor called of WrongAnimal\e[0m" << std::endl;
-	type = "wrong_horse";
+	type = "wrong_default_Animal";
 }
 
 WrongAnimal::WrongAnimal(const WrongAnimal &copy)
@@ -34,7 +34,7 @@ WrongAnimal & WrongAnimal::operator=(const WrongAnimal &assign)
 
 void WrongAnimal::makeSound()const
 {
-	std::cout << "wrong_hiqbliii" << std::endl;
+	std::cout << "wrong_default_sound" << std::endl;
 }
 
 std::string WrongAnimal::getType()const

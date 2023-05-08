@@ -29,7 +29,8 @@ Dog & Dog::operator=(const Dog &assign)
 {
 	if (this != &assign)
 	{
-		delete this->dogBrain;
+		if (dogBrain)
+			delete this->dogBrain;
 		type = assign.type;
 		dogBrain = new Brain(*assign.dogBrain);
 	}

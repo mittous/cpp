@@ -14,7 +14,6 @@ class Cat : public Animal
 		Cat & operator=(const Cat &assign);
 		void makeSound() const;
 	private:
-		
 };
 
 #endif

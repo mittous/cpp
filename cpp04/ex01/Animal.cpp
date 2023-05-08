@@ -4,7 +4,7 @@
 Animal::Animal()
 {
 	std::cout << "\e[0;33mDefault Constructor called of Animal\e[0m" << std::endl;
-	type = "horse";
+	type = "Default_Animal";
 }
 
 Animal::Animal(const Animal &copy)
@@ -23,6 +23,7 @@ Animal::~Animal()
 // Operators
 Animal & Animal::operator=(const Animal &assign)
 {
+	std::cout << "\e[0;31m Assignment operator is called of Animal\e[0m" << std::endl;
 	if (this != &assign)
 	{
 		type = assign.type;
@@ -32,7 +33,7 @@ Animal & Animal::operator=(const Animal &assign)
 
 void Animal::makeSound() const
 {
-	std::cout << "giddyup" << std::endl;
+	std::cout << "Default_Sound" << std::endl;
 }
 
 std::string Animal::getType() const

@@ -27,10 +27,10 @@ Cat & Cat::operator=(const Cat &assign)
 {
 	if (this != &assign)
 	{
-		delete catBrain;
+		if (catBrain)
+			delete catBrain;
 		type = assign.type;
 		catBrain = new Brain(*assign.catBrain);
-		catBrain = assign.catBrain;
 	}
 	return *this;
 }

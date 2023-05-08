@@ -24,7 +24,6 @@ public:
 
     // assgin op overload
     Fixed&	operator=(const Fixed& other);
-    a < b;
     // 6 comparison operators: >, <, >=, <=, == and !=
     bool	operator>(const Fixed& other)  const;
     bool	operator<(const Fixed& other)  const;
