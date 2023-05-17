@@ -6,6 +6,7 @@ int main()
     try
     {
         Bureaucrat mitt("mittous", 1);
+        std::cout << mitt << std::endl;
         mitt.ft_increment();
     }
     catch (std::exception& mit)

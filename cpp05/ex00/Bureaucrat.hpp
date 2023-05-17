@@ -18,8 +18,8 @@ class Bureaucrat
 		~Bureaucrat();
 		Bureaucrat & operator=(const Bureaucrat &assign);
 
-		std::string get_Name();
-		unsigned int get_Grade();
+		std::string get_Name() const;
+		unsigned int get_Grade() const;
 		void	ft_increment();
 		void	ft_decrement();
 
@@ -35,5 +35,6 @@ class Bureaucrat
 			virtual const char* what() const throw();
 		};
 };
+std::ostream& operator<<(std::ostream& os, const Bureaucrat &bur);
 
 #endif

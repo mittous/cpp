@@ -34,12 +34,12 @@ Bureaucrat & Bureaucrat::operator=(const Bureaucrat &assign)
 	return *this;
 }
 
-std::string Bureaucrat::get_Name()
+std::string Bureaucrat::get_Name() const
 {
 	return this->name;
 }
 
-unsigned int Bureaucrat::get_Grade()
+unsigned int Bureaucrat::get_Grade() const
 {
 	return this->grade;
 }
@@ -70,4 +70,10 @@ void	Bureaucrat:: ft_decrement()
 		throw Bureaucrat::GradeTooLowException();
 	else if (grade > 150)
 		throw Bureaucrat::GradeTooHighException();
+}
+
+std::ostream &operator<<(std::ostream &os, const Bureaucrat &bur)
+{
+	os << bur.get_Name() << ", bureaucrat grade " << bur.get_Grade();
+	return os;
 }
