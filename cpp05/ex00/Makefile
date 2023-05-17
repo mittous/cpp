@@ -2,26 +2,25 @@ NAME = Bureaucrat
 
 CC = c++
 
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRC =	Bureaucrat.cpp \
-		main.cpp \
+		main.cpp
 
-
-SFILES = $(SRC:.cpp=.o)
+SOFILES = $(SRC:.cpp=.o)
 
 all : $(NAME)
 
 $(NAME) : $(SOFILES)
 	$(CC)  $(CFLAGS) $(SOFILES) -o $(NAME)
 
-%.o : %.cpp *.h
+%.o : %.cpp Bureaucrat.hpp
 		$(CC)  $(CFLAGS) -o $@ -c $<
 
 clean :
-	@-rm -rf *.o
+	@rm -rf *.o
 
 fclean : clean
-	@-rm -rf Bureaucrat
+	@rm -rf Bureaucrat
 
 re : fclean all

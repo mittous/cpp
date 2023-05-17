@@ -3,10 +3,8 @@
 // Constructors
 Bureaucrat::Bureaucrat()
 {
-	std::cout << "\e[0;33mDefault Constructor called of Bureaucrat\e[0m" << std::endl;
 	this->name = "Default";
 	grade = 1;
-
 }
 
 Bureaucrat::Bureaucrat(std::string _name, int _grad) : name(_name) , grade(_grad)
@@ -25,9 +23,7 @@ Bureaucrat::Bureaucrat(const Bureaucrat &copy)
 
 
 // Destructor
-Bureaucrat::~Bureaucrat()
-{
-	std::cout << "\e[0;31mDestructor called of Bureaucrat\e[0m" << std::endl;
+Bureaucrat::~Bureaucrat(){
 }
 
 
@@ -48,12 +44,12 @@ unsigned int Bureaucrat::get_Grade()
 	return this->grade;
 }
 
-const char* Bureaucrat::GradeTooHighException::what() const
+const char* Bureaucrat::GradeTooHighException::what() const throw()
 {
 	return ("Grade too high");
 }
 
-const char* Bureaucrat::GradeTooLowException::what() const
+const char* Bureaucrat::GradeTooLowException::what() const throw()
 {
 	return ("Grade too low");
 }
