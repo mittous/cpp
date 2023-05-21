@@ -3,7 +3,9 @@
 
 # include <iostream>
 # include <string>
-
+# include <stdexcept>
+# include "Bureaucrat.hpp"
+class Bureaucrat;
 class Form
 {
 	private:
@@ -13,9 +15,9 @@ class Form
 		int			grade_Required_Execut;
 
 	public:
+
 		Form(std::string name, int grade_R_Sign, int grade_R_Execut);
 
-		
 		// canon
 		Form();
 		Form(const Form &copy);
@@ -31,20 +33,21 @@ class Form
 		// gett
 
 		// excep
-		class GradeTooHighException : std::exception
+		class GradeTooHighException : public std::exception
 		{
 			public :
 				virtual const char* what() const throw();
 		};
 
-		class GradeTooLowException : std::exception
+		class GradeTooLowException : public std::exception
 		{
 			public :
 				virtual const char* what() const throw();
 		};
 		// excep
 
-		
+		void	beSigned(Bureaucrat &bur);
+
 };
 
 std::ostream& operator<<(std::ostream& os,  Form &bur);

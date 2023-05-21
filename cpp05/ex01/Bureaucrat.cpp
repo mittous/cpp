@@ -39,19 +39,19 @@ std::string Bureaucrat::get_Name()
 	return this->name;
 }
 
-unsigned int Bureaucrat::get_Grade()
+int Bureaucrat::get_Grade()
 {
 	return this->grade;
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()
 {
-	return ("Grade too high");
+	return ("Bureaucrat grade too high");
 }
 
 const char* Bureaucrat::GradeTooLowException::what() const throw()
 {
-	return ("Grade too low");
+	return ("Bureaucrat grade too low");
 }
 
 void	Bureaucrat:: ft_increment()
@@ -76,4 +76,13 @@ std::ostream &operator<<(std::ostream &os, Bureaucrat &bur)
 {
 	os << bur.get_Name() << ", bureaucrat grade " << bur.get_Grade();
 	return os;
+}
+
+void	Bureaucrat::signForm(Form &form)
+{
+	if (form.get_signed() == true)
+		std::cout << name << " signed" <<  form.get_name();
+	else
+		std::cout << name << " couldn't sign " <<  form.get_name() 
+					<< " because his grade is too low" << std::endl;
 }

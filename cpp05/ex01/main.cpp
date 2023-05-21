@@ -1,27 +1,26 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
-int main()
+int main(void)
 {
-
+ 
     try
     {
-        Bureaucrat mitt("mittous", 1);
-        mitt.ft_increment();
-    }
-    catch (std::exception& mit)
-    {
-        std::cerr << mit.what() << 2 <<std::endl;
+        Bureaucrat mitt("mittous", 0);
+        Form form("form", 1, 1);
         try
         {
-            Bureaucrat a("iss,", 151);
+            form.beSigned(mitt);
         }
-        catch(Bureaucrat::GradeTooLowException &e)
+        catch(const std::exception& e)
         {
-            std::cerr << e.what() << 1<< '\n';
         }
-        catch(Bureaucrat::GradeTooHighException &e)
-        {
-            std::cerr << e.what() << 1<< '\n';
-        }
+        
+        mitt.signForm(form);
     }
+    catch(std::exception & e)
+    {
+        std::cerr << e.what();
+    }
+    return (0);
 }

@@ -4,7 +4,8 @@
 # include <iostream>
 # include <string>
 #include <stdexcept>
-
+# include "Form.hpp"
+class Form;
 class Bureaucrat
 {
 	private:
@@ -18,10 +19,10 @@ class Bureaucrat
 		~Bureaucrat();
 		Bureaucrat & operator=(const Bureaucrat &assign);
 
-		std::string get_Name();
-		unsigned int get_Grade();
-		void	ft_increment();
-		void	ft_decrement();
+		std::string		get_Name();
+		int	get_Grade();
+		void			ft_increment();
+		void			ft_decrement();
 
 		class GradeTooHighException : public std::exception
 		{
@@ -34,6 +35,8 @@ class Bureaucrat
 			public :
 			virtual const char* what() const throw();
 		};
+
+		void	signForm(Form &form);
 };
 
 std::ostream& operator<<(std::ostream& os,  Bureaucrat &bur);
