@@ -1,4 +1,4 @@
-NAME = Bureaucrat
+NAME = Form
 
 CC = c++
 
@@ -15,13 +15,13 @@ all : $(NAME)
 $(NAME) : $(SOFILES)
 	$(CC)  $(CFLAGS) $(SOFILES) -o $(NAME)
 
-%.o : %.cpp Bureaucrat.hpp
+%.o : %.cpp Bureaucrat.cpp Form.hpp 
 		$(CC)  $(CFLAGS) -o $@ -c $<
 
 clean :
 	@rm -rf *.o
 
 fclean : clean
-	@rm -rf Bureaucrat
+	@rm -rf Form
 
 re : fclean all
