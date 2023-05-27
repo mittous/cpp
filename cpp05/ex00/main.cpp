@@ -16,11 +16,7 @@ int main()
         {
             Bureaucrat a("iss,", 151);
         }
-        catch(Bureaucrat::GradeTooLowException &e)
-        {
-            std::cerr << e.what() << 1<< '\n';
-        }
-        catch(Bureaucrat::GradeTooHighException &e)
+        catch(std::exception &e)
         {
             std::cerr << e.what() << 1<< '\n';
         }

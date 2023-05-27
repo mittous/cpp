@@ -8,12 +8,12 @@
 class Bureaucrat
 {
 	private:
-		std::string name;
+		const std::string name;
 		int grade;
 	
 	public:
 		Bureaucrat();
-		Bureaucrat(std::string name, int grade);
+		Bureaucrat(const std::string name, int grade);
 		Bureaucrat(const Bureaucrat &copy);
 		~Bureaucrat();
 		Bureaucrat & operator=(const Bureaucrat &assign);
@@ -35,6 +35,7 @@ class Bureaucrat
 			virtual const char* what() const throw();
 		};
 };
-std::ostream& operator<<(std::ostream& os, const Bureaucrat &bur);
+
+std::ostream& operator<<(std::ostream& os, Bureaucrat &bur);
 
 #endif
