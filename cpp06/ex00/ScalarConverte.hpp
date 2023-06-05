@@ -4,6 +4,8 @@
 # include <iostream>
 # include <string>
 #include <cctype>
+#include <sstream>
+#include <iomanip>
 
 enum e_type
 {
@@ -12,7 +14,6 @@ enum e_type
 	FLOAT,
 	DOUBLE,
 	UNKNOWN,
-	NON_DISPLAYABLE,
 };
 
 typedef struct s_num
