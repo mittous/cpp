@@ -9,7 +9,7 @@ class AForm;
 class Bureaucrat
 {
 	private:
-		std::string name;
+		const std::string name;
 		int grade;
 	
 	public:
@@ -29,7 +29,7 @@ class Bureaucrat
 			public :
 			virtual const char* what() const throw();
 		};
-		
+
 		class GradeTooLowException : public std::exception 
 		{
 			public :

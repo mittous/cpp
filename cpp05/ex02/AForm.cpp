@@ -1,18 +1,11 @@
 #include "AForm.hpp"
 
-AForm::AForm()
-{
-	std::cout << "\e[0;33mDefault Constructor called of AForm\e[0m" << std::endl;
-	name = "Default";
-	grade_Required_Execut = 1;
-	grade_Required_Sign = 1;
+AForm::AForm() : name("default"), grade_Required_Sign(1), grade_Required_Execut(1){
 	signde = false;
 }
 
-AForm::AForm(const AForm &copy)
-{
-	std::cout << "\e[0;33mCopy Constructor called of AForm\e[0m" << std::endl;
-	*this = copy;
+AForm::AForm(const AForm &copy) : name(copy.name), grade_Required_Sign(copy.grade_Required_Sign), 
+		grade_Required_Execut(copy.grade_Required_Execut){
 }
 
 AForm::~AForm(){
@@ -21,22 +14,13 @@ AForm::~AForm(){
 AForm & AForm::operator=(const AForm &assign)
 {
 	if (this != &assign)
-	{
-		name = assign.name;
-		grade_Required_Execut = assign.grade_Required_Execut;
-		grade_Required_Sign = assign.grade_Required_Sign;
 		signde = assign.signde;
-	}
 	return *this;
 }
 
-AForm::AForm(std::string _name, int _grade_R_Sign, int _grade_R_Execut)
-{
-	name = _name;
-	grade_Required_Execut = _grade_R_Execut;
-	grade_Required_Sign = _grade_R_Sign;
+AForm::AForm(std::string _name, int _grade_R_Sign, int _grade_R_Execut) : name(_name), 
+		grade_Required_Sign(_grade_R_Sign), grade_Required_Execut(_grade_R_Execut){
 	signde = false;
-
 	if (grade_Required_Execut < 1 || grade_Required_Sign < 1)
 		throw GradeTooLowException();
 	else if (grade_Required_Execut > 150 || grade_Required_Sign < 1)
@@ -45,6 +29,7 @@ AForm::AForm(std::string _name, int _grade_R_Sign, int _grade_R_Execut)
 
 
 // gett
+
 std::string AForm::get_name() const
 {
 	return (name);
@@ -77,7 +62,7 @@ const char *AForm::GradeTooLowException::what() const throw()
 
 const char *AForm::FormNotSigned::what() const throw()
 {
-	return (" Form is not signed\n");
+	return (" AForm is not signed\n");
 }
 // excep
 

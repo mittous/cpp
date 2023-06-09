@@ -1,10 +1,7 @@
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 // Constructors
-Bureaucrat::Bureaucrat()
-{
-	this->name = "Default";
-	grade = 1;
+Bureaucrat::Bureaucrat() : name("default"), grade(1){
 }
 
 Bureaucrat::Bureaucrat(std::string _name, int _grad) : name(_name) , grade(_grad)
@@ -15,10 +12,8 @@ Bureaucrat::Bureaucrat(std::string _name, int _grad) : name(_name) , grade(_grad
 		throw Bureaucrat::GradeTooHighException();
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &copy)
-{
-	(void) copy;
-	std::cout << "\e[0;33mCopy Constructor called of Bureaucrat\e[0m" << std::endl;
+Bureaucrat::Bureaucrat(const Bureaucrat &copy): name(copy.name), grade(copy.grade){
+	*this = copy;
 }
 
 
@@ -30,7 +25,8 @@ Bureaucrat::~Bureaucrat(){
 // Operators
 Bureaucrat & Bureaucrat::operator=(const Bureaucrat &assign)
 {
-	(void) assign;
+	if (this != &assign)
+		grade = assign.grade;
 	return *this;
 }
 

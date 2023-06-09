@@ -10,10 +10,10 @@ class Bureaucrat;
 class AForm
 {
 	private:
-		std::string name;
+		const std::string name;
 		bool		signde;
-		int			grade_Required_Sign;
-		int			grade_Required_Execut;
+		const int			grade_Required_Sign;
+		const int			grade_Required_Execut;
 
 	public:
 
@@ -22,7 +22,7 @@ class AForm
 		// canon
 		AForm();
 		AForm(const AForm &copy);
-		~AForm();
+		virtual ~AForm();
 		AForm & operator=(const AForm &assign);
 		// canon
 
