@@ -18,7 +18,7 @@ class MutantStack : public std::stack<T>
         return *this;
     };
     ~MutantStack(){};
-    typedef typename std::stack<T>::container_type::iterator iterator;
+    typename std::stack<T>::container_type::iterator iterator;
     iterator begin() { return (this->c.begin()); }
     iterator end() { return (this->c.end()); }
     

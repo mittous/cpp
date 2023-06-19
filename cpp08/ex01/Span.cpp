@@ -41,9 +41,10 @@ int	Span::shortestSpan()
 	}
 	sort(span.begin(), span.end());
 	int tmp = 0;
-	for (unsigned int i = 0; i < span.size() - 1; i++){
-		tmp = span[i + 1] - span[i];
-		if (tmp < span[i + 1] - span[i])
+		tmp = span[1] - span[0];
+	for (unsigned int i = 1; i < span.size() - 1; i++)
+	{
+		if (span[i + 1] - span[i] < tmp)
 			tmp = span[i + 1] - span[i];
 	}
 	return (tmp);
@@ -57,4 +58,10 @@ int Span::longestSpan()
 	}
 	sort(span.begin(), span.end());
 	return (span[span.size() - 1] - span[0]);
+}
+
+void Span::addNumberMax(std::vector<int>::iterator begin, std::vector<int>::iterator end)
+{
+	for (; begin != end; ++begin)
+		addNumber(*begin);
 }
