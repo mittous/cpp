@@ -5,24 +5,19 @@
 #include <iostream>
 #include <string>
 #include <map>
+#include <fstream>
 
 class BitcoinExchange
 {
 	public:
-		// Constructors
 		BitcoinExchange();
 		BitcoinExchange(const BitcoinExchange &copy);
-		
-		// Destructor
 		~BitcoinExchange();
-		
-		// Operators
 		BitcoinExchange & operator=(const BitcoinExchange &assign);
+		void set_Map(int ac, char **av);
 		
 	private:
-		
+		std::map<std::string, std::string> _map;
 };
-
-
 
 #endif
