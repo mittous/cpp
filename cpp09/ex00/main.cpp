@@ -5,6 +5,7 @@
 int main (int ac, char **av)
 {
     BitcoinExchange exchange;
-    exchange.set_Map(ac, av);
-    // std::cout << txt_Content << std::endl;
+    exchange.set_Map();
+    exchange.get_input_Content(ac, av);
+    exchange.BitcPrice();
 }
