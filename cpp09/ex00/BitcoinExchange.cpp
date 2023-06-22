@@ -88,7 +88,7 @@ std::string ft_trim(const std::string& str, char c)
 }
 
 
-void ft_checkFirst_line(std::string _input_Content)
+void ft_checkFirst_line(std::string &_input_Content)
 {
 	if (_input_Content.empty()){
 		std::cerr << "Error: empty file." << std::endl;
@@ -121,6 +121,7 @@ int checkType(std::string value)
 	{
 		for (size_t i = 0; i < value.length(); ++i)
 		{
+			// std::cout << value[i] << std::endl;
 			char c = value[i];
 			if (c == '.')
 			{
@@ -132,11 +133,13 @@ int checkType(std::string value)
 				return 0;
 		}
 	}
+	else
+		return 0;
 	if (dot == true)
 		return DOUBLE;
 	else if (dot == false)
 		return INT;
-		return 0;
+	return 0;
 }
 
 double stringToNum(const std::string& str) 
@@ -147,49 +150,60 @@ double stringToNum(const std::string& str)
     return value;
 }
 
-// double convert(std::string value)
-// {
-// 	if (checkType(value) == INT)
-// 		int i = stringToNum(value);
-// 	else if (checkType(value) == DOUBLE)
-// 		double d = stringToNum(value);
-	
-// }
-
-int ft_Check_Inpute_Is_Valid(std::string _input_Content)
+int ft_Check_Inpute_Is_Valid(std::string _input_Content, std::map<std::string, std::string> _map)
 {
 	std::string input_Content= ft_trim(_input_Content, ' ');
 	int pipe = std::count(input_Content.begin(), input_Content.end(), '|');
 	if (pipe != 1)
 		return (0);
 	std::string date = ft_split(input_Content, '|');
+	std::string date_to_search = date;
 	std::string value = ft_split(input_Content, '\n');
-
-	int i = 2;
+	int i = 3;
 	int ret = 0;
-	while (i && std::count(date.begin(), date.end(), '-') == 2)
+	std::string date_split;
+	if (std::count(date.begin(), date.end(), '-') == 2)
 	{
-		std::string date_split = ft_split(date, '-');
-		// std::cout << date_split << std::endl;
-		if (i == 2)
+		while (i)
 		{
-			if (date_split.length() == 4 && checkType(date_split) == INT)
+			date_split = ft_split(date, '-');
+			if (checkType(date_split) == INT)
 			{
-			
-				puts("111111111");
-				ret = 1;
+				if (i == 3)
+					if (date_split.length() == 4 && stringToNum(date_split) > 0)
+						ret = 1337;
+					else			
+						return (BAD_INPUT);
+				else if (i == 1 || i == 2)
+				{
+					if (date_split.length() == 2 && stringToNum(date_split) > 0)
+						ret = 1337;
+					else
+						return (BAD_INPUT);
+				}
+			}
+			i--;
+		}
+		if (stringToNum(value) < 0)
+			return (NEGATIVE);
+		else if (stringToNum(value) > 1000)
+			return (TOO_LARGE);
+		else if (checkType(value) == INT || checkType(value) == DOUBLE)
+		{
+			std::map<std::string, std::string>::iterator it = _map.find(date_to_search);
+			if (it != _map.end())
+			{
+				std::cout << it->first << " => " << value << " = " << stringToNum (it->second) * stringToNum(value) << std::endl;
 			}
 			else
-				ret = 0;
+			{
+				std::map<std::string, std::string>::iterator lower = _map.lower_bound(date_to_search);
+				--lower;
+				std::cout << date_to_search << " => " << value << " = " << stringToNum (lower->second) * stringToNum(value) << std::endl;
+			}
 		}
-		else if (i == 1 || i == 0)
-		{
-			if (date_split.length() == 2 && checkType(date_split) == INT && stringToNum(date_split) > 0)
-				ret = 1;
-			else
-				ret = 0;
-		}
-		i--;
+		else
+			return (BAD_INPUT);
 	}
 	return (ret);
 }
@@ -200,21 +214,21 @@ void BitcoinExchange::BitcPrice()
 	ft_checkFirst_line(_input_Content);
 	while (_input_Content.size())
 	{
-		std::string line = _input_Content.substr(0, _input_Content.find("\n"));
-		_input_Content.erase(0, _input_Content.find("\n") + 1);
-		int check = ft_Check_Inpute_Is_Valid(ft_trim(line, ' '));
-		std::cout << check << std::endl;
-		// switch (check)
-		// {
-		// case 0:
-		// 	std::cout << "Error: bad input => " << line << std::endl;
-		// 	break;
-		// case 1:
-		// 	std::cout << "Error: not a positive number."<< std::endl;
-		// 	break;
-		// case 2:
-		// 	std::cout << "Error: too large a number."<< std::endl;
-		// 	break;
-		// }
+		size_t tmp = _input_Content.find("\n");
+		std::string line = _input_Content.substr(0, tmp);
+		tmp != _input_Content.npos ? _input_Content.erase(0, tmp + 1) : _input_Content.erase(0, _input_Content.npos);
+		int check = ft_Check_Inpute_Is_Valid(ft_trim(line, ' '), _map);
+		switch (check)
+		{
+		case BAD_INPUT:
+			std::cout << "Error: bad input => " << line << std::endl;
+			break;
+		case 1:
+			std::cout << "Error: not a positive number."<< std::endl;
+			break;
+		case TOO_LARGE:
+			std::cout << "Error: too large a number."<< std::endl;
+			break;
+		}
 	}
 }

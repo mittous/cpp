@@ -11,10 +11,9 @@
 #include <sstream>
 enum e_data
 {
-	bad_date,
-	negative_value,
-	to_large_value,
-	bad_value,
+	BAD_INPUT,
+	NEGATIVE,
+	TOO_LARGE,
 	DOUBLE,
 	INT,
 };
