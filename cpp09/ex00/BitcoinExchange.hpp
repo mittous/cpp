@@ -14,6 +14,7 @@ enum e_data
 	BAD_INPUT,
 	NEGATIVE,
 	TOO_LARGE,
+	NO_BITCOIN,
 	DOUBLE,
 	INT,
 };

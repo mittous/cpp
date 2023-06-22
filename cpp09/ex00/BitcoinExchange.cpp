@@ -1,29 +1,24 @@
 #include "BitcoinExchange.hpp"
 
-// Constructors
-BitcoinExchange::BitcoinExchange()
-{
-	std::cout << "\e[0;33mDefault Constructor called of BitcoinExchange\e[0m" << std::endl;
+BitcoinExchange::BitcoinExchange(){
 }
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange &copy)
 {
-	(void) copy;
-	std::cout << "\e[0;33mCopy Constructor called of BitcoinExchange\e[0m" << std::endl;
+	_map = copy._map;
+	_input_Content = copy._input_Content;	
 }
 
-
-// Destructor
-BitcoinExchange::~BitcoinExchange()
-{
-	std::cout << "\e[0;31mDestructor called of BitcoinExchange\e[0m" << std::endl;
+BitcoinExchange::~BitcoinExchange(){
 }
 
-
-// Operators
 BitcoinExchange & BitcoinExchange::operator=(const BitcoinExchange &assign)
 {
-	(void) assign;
+	if (this != &assign)
+	{
+		_map = assign._map;
+		_input_Content = assign._input_Content;
+	}
 	return *this;
 }
 
@@ -72,10 +67,6 @@ void	BitcoinExchange::set_Map()
 		_map[key] = value;
 		lenght = csvData_Content.length();
 	}
-	// for (std::map<std::string, std::string>::iterator it = _map.begin(); it != _map.end(); it++)
-	// {
-	//     std::cout << it->first <<" " << it->second << '\n';
-	// }
 }
 
 std::string ft_trim(const std::string& str, char c) 
@@ -121,7 +112,6 @@ int checkType(std::string value)
 	{
 		for (size_t i = 0; i < value.length(); ++i)
 		{
-			// std::cout << value[i] << std::endl;
 			char c = value[i];
 			if (c == '.')
 			{
@@ -159,27 +149,65 @@ int ft_Check_Inpute_Is_Valid(std::string _input_Content, std::map<std::string, s
 	std::string date = ft_split(input_Content, '|');
 	std::string date_to_search = date;
 	std::string value = ft_split(input_Content, '\n');
-	int i = 3;
-	int ret = 0;
 	std::string date_split;
 	if (std::count(date.begin(), date.end(), '-') == 2)
 	{
+		int nb_day = 0;
+		int nb_dayMM2 = 0;
+		int i = 3;
 		while (i)
 		{
 			date_split = ft_split(date, '-');
 			if (checkType(date_split) == INT)
 			{
+				int nb = stringToNum(date_split);
 				if (i == 3)
-					if (date_split.length() == 4 && stringToNum(date_split) > 0)
-						ret = 1337;
-					else			
-						return (BAD_INPUT);
-				else if (i == 1 || i == 2)
 				{
-					if (date_split.length() == 2 && stringToNum(date_split) > 0)
-						ret = 1337;
+					if (date_to_search == "2009-01-01" || nb < 2009)
+						return (NO_BITCOIN);
+					else if (date_split.length() == 4 && nb >= 2009)
+					{
+						if ((nb % 4 == 0 && nb % 100 != 0) || (nb % 400 == 0))
+							nb_dayMM2 = 29;
+						else
+							nb_dayMM2 = 28;
+					}
 					else
 						return (BAD_INPUT);
+				}
+				else if (i == 2)
+				{
+					if (date_split.length() == 2 && nb > 0 && nb < 13)
+						switch (nb)
+						{
+							case 4:
+							case 6:
+							case 9:
+							case 11:
+								nb_day = 30;
+								break;
+							case 2:
+								nb_day = nb_dayMM2;
+								break;
+							default:
+								nb_day = 31;
+								break;
+						}
+					else
+						return (BAD_INPUT);
+				}
+				else if (i == 1)
+				{
+					if (date_split.length() == 2 && nb > 0)
+					{
+						if (nb <= nb_day)
+							break;
+						else
+							return (BAD_INPUT);
+					}
+					else
+						return (BAD_INPUT);
+
 				}
 			}
 			i--;
@@ -205,7 +233,7 @@ int ft_Check_Inpute_Is_Valid(std::string _input_Content, std::map<std::string, s
 		else
 			return (BAD_INPUT);
 	}
-	return (ret);
+	return (1337);
 }
 
 
@@ -223,11 +251,14 @@ void BitcoinExchange::BitcPrice()
 		case BAD_INPUT:
 			std::cout << "Error: bad input => " << line << std::endl;
 			break;
-		case 1:
+		case NEGATIVE:
 			std::cout << "Error: not a positive number."<< std::endl;
 			break;
 		case TOO_LARGE:
 			std::cout << "Error: too large a number."<< std::endl;
+			break;
+		case NO_BITCOIN:
+			std::cout << "Error: Bitcoin didn't invented yet (hh) =>"<< line << std::endl;
 			break;
 		}
 	}
