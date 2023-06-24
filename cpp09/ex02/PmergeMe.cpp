@@ -1,29 +1,35 @@
 #include "PmergeMe.hpp"
 
-// Constructors
-PmergeMe::PmergeMe()
+void parse_Nb(int ac, char **av, std::vector<int> &_v, std::deque<int> &_d)
 {
-	std::cout << "\e[0;33mDefault Constructor called of PmergeMe\e[0m" << std::endl;
+	if (ac == 1)
+	{
+		std::cout << "Error: no nubmers entred." << std::endl;
+		exit(1);
+	}
+
+	for (int i = 1; i < ac; i++)
+	{
+		for (int j = 0; av[i][j]; j++)
+		{
+			if (!isdigit(av[i][j]))
+			{
+				std::cout << "Error: make sur you enter just numbers and only positive ones." << std::endl;
+				exit(1);
+			}
+			_d.push_back(atoi(av[i]));
+			_v.push_back(atoi(av[i]));
+		}
+	}
 }
 
-PmergeMe::PmergeMe(const PmergeMe &copy)
+
+void print_cont( std::deque<int> &_d, std::vector<int> &_v)
 {
-	(void) copy;
-	std::cout << "\e[0;33mCopy Constructor called of PmergeMe\e[0m" << std::endl;
+	std::cout << "Vector:" << std::endl;
+	for (std::vector<int>::iterator it = _v.begin(); it != _v.end(); it++)
+		std::cout << *it << std::endl;
+	std::cout << "Deque:" << std::endl;
+	for (std::deque<int>::iterator it = _d.begin(); it != _d.end(); it++)
+		std::cout << *it << std::endl;
 }
-
-
-// Destructor
-PmergeMe::~PmergeMe()
-{
-	std::cout << "\e[0;31mDestructor called of PmergeMe\e[0m" << std::endl;
-}
-
-
-// Operators
-PmergeMe & PmergeMe::operator=(const PmergeMe &assign)
-{
-	(void) assign;
-	return *this;
-}
-
