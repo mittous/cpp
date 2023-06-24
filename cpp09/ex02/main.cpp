@@ -34,7 +34,7 @@ int main(int ac, char **av)
     long _D_microsec = _D_end.tv_usec - _D_start.tv_usec;
     double _D_time = _D_sec + _D_microsec / 1000000.0;
     
-    std::cout << "\nTime to process a range of " << _v.size() << " elements with std::vector: " << std::fixed << std::setprecision(2) << _V_time << " us." << std::endl;
-    std::cout << "Time to process a range of " << _d.size() << " elements with std::deque: " << std::fixed << std::setprecision(2)<< _D_time << " us." << std::endl;
+    std::cout << "\nTime to process a range of " << _v.size() << " elements with std::vector: " << std::fixed << std::setprecision(5) << _V_time << " us." << std::endl;
+    std::cout << "Time to process a range of " << _d.size() << " elements with std::deque: " << std::fixed << std::setprecision(5)<< _D_time << " us." << std::endl;
     return 0;
 }
