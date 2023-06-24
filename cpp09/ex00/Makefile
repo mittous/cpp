@@ -1,4 +1,4 @@
-NAME = Bitcoin
+NAME = btc
 
 CC = c++
 
@@ -21,6 +21,6 @@ clean :
 	@rm -rf *.o
 
 fclean : clean
-	@rm -rf Bitcoin
+	@rm -rf btc
 
 re : fclean all

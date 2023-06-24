@@ -60,12 +60,26 @@ void	BitcoinExchange::set_Map()
 	int lenght = csvData_Content.length();
 	while (lenght)
 	{
+		if (csvData_Content[0] == '\n')
+		{
+			csvData_Content.erase(0, 1);
+			lenght = csvData_Content.length();
+			continue;
+		}
+
 		std::string key = csvData_Content.substr(0, csvData_Content.find(","));
 		csvData_Content.erase(0, csvData_Content.find(",") + 1);
-		std::string value = csvData_Content.substr(0, csvData_Content.find("\n"));
+		size_t tmp = csvData_Content.find("\n");
+		tmp != csvData_Content.npos ? csvData_Content.erase(tmp, 1) : csvData_Content.erase(0, csvData_Content.npos);
+		std::string value = csvData_Content.substr(0, tmp);
 		csvData_Content.erase(0, csvData_Content.find("\n") + 1);
 		_map[key] = value;
 		lenght = csvData_Content.length();
+	}
+	if (_map.empty())
+	{
+		std::cout << "Error: data.csv is empty" << std::endl;
+		exit (1);
 	}
 }
 
@@ -78,13 +92,14 @@ std::string ft_trim(const std::string& str, char c)
     return str.substr(first, last - first + 1);
 }
 
-
 void ft_checkFirst_line(std::string &_input_Content)
 {
 	if (_input_Content.empty()){
 		std::cerr << "Error: empty file." << std::endl;
 		exit (1);
 	}
+	while (_input_Content[0] == '\n')
+		_input_Content.erase(0, 1);
 	std::string line = _input_Content.substr(0, _input_Content.find("\n"));
 	std::string input_Content = ft_trim(line, ' ');
 	if (input_Content != "date | value"){
@@ -216,7 +231,7 @@ int ft_Check_Inpute_Is_Valid(std::string _input_Content, std::map<std::string, s
 			return (NEGATIVE);
 		else if (stringToNum(value) > 1000)
 			return (TOO_LARGE);
-		else if (checkType(value) == INT || checkType(value) == DOUBLE)
+		else if ((checkType(value) == INT || checkType(value) == DOUBLE))
 		{
 			std::map<std::string, std::string>::iterator it = _map.find(date_to_search);
 			if (it != _map.end())
@@ -226,8 +241,11 @@ int ft_Check_Inpute_Is_Valid(std::string _input_Content, std::map<std::string, s
 			else
 			{
 				std::map<std::string, std::string>::iterator lower = _map.lower_bound(date_to_search);
-				--lower;
-				std::cout << date_to_search << " => " << value << " = " << stringToNum (lower->second) * stringToNum(value) << std::endl;
+				if (lower != _map.begin())
+				{
+					--lower;
+					std::cout << date_to_search << " => " << value << " = " << stringToNum (lower->second) * stringToNum(value) << std::endl;
+				}
 			}
 		}
 		else
@@ -236,30 +254,32 @@ int ft_Check_Inpute_Is_Valid(std::string _input_Content, std::map<std::string, s
 	return (1337);
 }
 
-
 void BitcoinExchange::BitcPrice()
 {
 	ft_checkFirst_line(_input_Content);
 	while (_input_Content.size())
 	{
 		size_t tmp = _input_Content.find("\n");
+		
 		std::string line = _input_Content.substr(0, tmp);
 		tmp != _input_Content.npos ? _input_Content.erase(0, tmp + 1) : _input_Content.erase(0, _input_Content.npos);
+		if (tmp == 0)
+			continue;
 		int check = ft_Check_Inpute_Is_Valid(ft_trim(line, ' '), _map);
 		switch (check)
 		{
-		case BAD_INPUT:
-			std::cout << "Error: bad input => " << line << std::endl;
-			break;
-		case NEGATIVE:
-			std::cout << "Error: not a positive number."<< std::endl;
-			break;
-		case TOO_LARGE:
-			std::cout << "Error: too large a number."<< std::endl;
-			break;
-		case NO_BITCOIN:
-			std::cout << "Error: Bitcoin didn't invented yet (hh) =>"<< line << std::endl;
-			break;
+			case BAD_INPUT:
+				std::cout << "Error: bad input => " << line << std::endl;
+				break;
+			case NEGATIVE:
+				std::cout << "Error: not a positive number."<< std::endl;
+				break;
+			case TOO_LARGE:
+				std::cout << "Error: too large a number."<< std::endl;
+				break;
+			case NO_BITCOIN:
+				std::cout << "Error: Bitcoin doesn't invented yet (hh) =>"<< line << std::endl;
+				break;
 		}
 	}
 }
