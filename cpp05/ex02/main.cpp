@@ -8,18 +8,21 @@
 int main(){
 
     try{
-        Bureaucrat four("four", 150);
-        ShrubberyCreationForm   test1("target1");
-        RobotomyRequestForm     test2("target2");
-        PresidentialPardonForm  test3("target3");
+        Bureaucrat mittous("mittous", 1);
+        ShrubberyCreationForm   Shrubbery("AppelTarget");
+        RobotomyRequestForm     Robotomy("RobotomyTarget");
+        PresidentialPardonForm  Pardon("PardonTarget");
 
-        test1.beSigned(four);
-        test2.beSigned(four);
-        test3.beSigned(four);
-        four.signForm(test1);
-        four.signForm(test2);
-        four.signForm(test3);
-        test1.execute(four);
+        Shrubbery.beSigned(mittous);
+        // Shrubbery.execute(mittous);
+        
+        // Robotomy.beSigned(mittous);
+        // Robotomy.execute(mittous);
+        
+        // Pardon.beSigned(mittous);
+        // Pardon.execute(mittous);
+        
+        // mittous.executeForm(Shrubbery);        
     }
     catch (std::exception &e){
         std::cout << e.what() << "\n";

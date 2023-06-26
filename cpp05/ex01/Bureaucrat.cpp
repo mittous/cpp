@@ -1,10 +1,7 @@
 #include "Bureaucrat.hpp"
 
 // Constructors
-Bureaucrat::Bureaucrat()
-{
-	this->name = "Default";
-	grade = 1;
+Bureaucrat::Bureaucrat(): name("Default"), grade(1){
 }
 
 Bureaucrat::Bureaucrat(std::string _name, int _grad) : name(_name) , grade(_grad)
@@ -15,31 +12,26 @@ Bureaucrat::Bureaucrat(std::string _name, int _grad) : name(_name) , grade(_grad
 		throw Bureaucrat::GradeTooHighException();
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &copy)
-{
-	(void) copy;
-	std::cout << "\e[0;33mCopy Constructor called of Bureaucrat\e[0m" << std::endl;
+Bureaucrat::Bureaucrat(const Bureaucrat &copy){
+	*this = copy;
 }
 
-
-// Destructor
 Bureaucrat::~Bureaucrat(){
 }
 
-
-// Operators
 Bureaucrat & Bureaucrat::operator=(const Bureaucrat &assign)
 {
-	(void) assign;
+	if (this != &assign)
+		grade = assign.grade;
 	return *this;
 }
 
-std::string Bureaucrat::get_Name()
+std::string Bureaucrat::get_Name() const
 {
 	return this->name;
 }
 
-int Bureaucrat::get_Grade()
+int Bureaucrat::get_Grade() const
 {
 	return this->grade;
 }
@@ -74,7 +66,7 @@ void	Bureaucrat:: ft_decrement()
 
 std::ostream &operator<<(std::ostream &os, Bureaucrat &bur)
 {
-	os << bur.get_Name() << ", bureaucrat grade " << bur.get_Grade();
+	os << bur.get_Name() << ", bureaucrat grade = " << bur.get_Grade();
 	return os;
 }
 

@@ -1,11 +1,11 @@
- #ifndef BUREAUCRAT_HPP
+#ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
 
 # include <iostream>
 # include <string>
 #include <stdexcept>
-# include "Form.hpp"
-class Form;
+# include "AForm.hpp"
+class AForm;
 class Bureaucrat
 {
 	private:
@@ -29,14 +29,15 @@ class Bureaucrat
 			public :
 			virtual const char* what() const throw();
 		};
-		
+
 		class GradeTooLowException : public std::exception 
 		{
 			public :
 			virtual const char* what() const throw();
 		};
 
-		void	signForm(Form &form);
+		void	signForm(AForm &Aform);
+		void	executeForm(AForm const & Aform) const;
 };
 
 std::ostream& operator<<(std::ostream& os,  Bureaucrat &bur);

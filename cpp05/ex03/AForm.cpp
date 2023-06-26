@@ -1,10 +1,11 @@
 #include "AForm.hpp"
 
-AForm::AForm() : name("default"), grade_Required_Sign(1), grade_Required_Execut(1), signde(false){
+AForm::AForm() : name("default"), grade_Required_Sign(1), grade_Required_Execut(1){
+	signde = false;
 }
 
 AForm::AForm(const AForm &copy) : name(copy.name), grade_Required_Sign(copy.grade_Required_Sign), 
-		grade_Required_Execut(copy.grade_Required_Execut), signde(copy.signde){
+		grade_Required_Execut(copy.grade_Required_Execut){
 }
 
 AForm::~AForm(){

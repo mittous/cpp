@@ -32,7 +32,6 @@ void	RobotomyRequestForm::execute(Bureaucrat const & exec) const
 		throw AForm::FormNotSigned();
 	else
 	{
-		srand(time(NULL));
 		std::cout << "khr khr chr far" << std::endl;
     	if (rand() % 2)
     	    std::cout << this->target << " success to robotomized \n";

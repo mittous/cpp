@@ -1,18 +1,17 @@
 #include "ShrubberyCreationForm.hpp"
 
 // Constructors
-ShrubberyCreationForm::ShrubberyCreationForm(): AForm("Shrbry_C_Form", 145, 137), target("sherub_targ"){
+ShrubberyCreationForm::ShrubberyCreationForm(): AForm("Shrbry_C_Form", 145, 137),
+ target("sherub_targ"){
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &copy): AForm(copy), target(copy.target){
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &copy):
+ AForm(copy), target(copy.target){
 }
-
 
 // Destructor
 ShrubberyCreationForm::~ShrubberyCreationForm(){
 }
-
-
 
 // Operators
 ShrubberyCreationForm & ShrubberyCreationForm::operator=(const ShrubberyCreationForm &assign){
@@ -21,7 +20,8 @@ ShrubberyCreationForm & ShrubberyCreationForm::operator=(const ShrubberyCreation
 	return *this;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string _target): AForm("Shrbry_C_Form", 145, 137), target(_target) {}
+ShrubberyCreationForm::ShrubberyCreationForm(std::string _target): 
+AForm("Shrbry_C_Form", 145, 137), target(_target) {}
 
 // execute
 void ShrubberyCreationForm ::execute(Bureaucrat const & exec) const
@@ -32,20 +32,20 @@ void ShrubberyCreationForm ::execute(Bureaucrat const & exec) const
 		throw AForm::FormNotSigned();
 	else
 	{
-		std::ofstream apple;
-		apple.open(target + "_shrubbery");
-		if (apple.is_open())
+		std::ofstream tree;
+		tree.open(target + "_shrubbery");
+		if (tree.is_open())
 		{
-			apple << "       _-_" << std::endl;
-			apple << "    /~~   ~~\\" << std::endl;
-			apple << " /~~         ~~\\" << std::endl;
-			apple << "{               }" << std::endl;
-			apple << " \\  _-     -_  /" << std::endl;
-			apple << "   ~  \\\\ //  ~" << std::endl;
-			apple << "_- -   | | _- _" << std::endl;
-			apple << "  _ -  | |   -_" << std::endl;
-			apple << "      // \\\\" << std::endl;
-			apple.close();
+			tree << "       _-_" << std::endl;
+			tree << "    /~~   ~~\\" << std::endl;
+			tree << " /~~         ~~\\" << std::endl;
+			tree << "{               }" << std::endl;
+			tree << " \\  _-     -_  /" << std::endl;
+			tree << "   ~  \\\\ //  ~" << std::endl;
+			tree << "_- -   | | _- _" << std::endl;
+			tree << "  _ -  | |   -_" << std::endl;
+			tree << "      // \\\\" << std::endl;
+			tree.close();
 		}
 		else
 		{

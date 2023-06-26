@@ -1,43 +1,25 @@
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
-// int main(void)
-// {
- 
-//     try
-//     {
-//         Bureaucrat mitt("mittous", 0);
-//         Form form("form", 1, 1);
-//         try
-//         {
-//             form.beSigned(mitt);
-//         }
-//         catch(const std::exception& e)
-//         {
-//         }
-        
-//         mitt.signForm(form);
-//     }
-//     catch(std::exception & e)
-//     {
-//         std::cerr << e.what();
-//     }
-//     return (0);
-// }
-
-int main () try
+int main(void)
 {
-    Bureaucrat mitt("mittous" , 0);
-    Form form("form1", 1, 1);
-    try
+    try 
     {
-        form.beSigned(mitt);
+        Bureaucrat ismail("ismail", 1);
+        Form mittous ("mittous", 1, 20);
+        try
+        {
+            mittous.beSigned(ismail);
+        }
+        catch (std::exception &e)
+        {
+            std::cout << e.what() << std::endl;
+        }
+        std::cout << mittous << std::endl;
+        std::cout << ismail << std::endl;
     }
-    catch(std::exception &e)
+    catch(std::exception &ex)
     {
+        std::cout << ex.what() << std::endl;
     }
-}
-catch(const std::exception& e)
-{
-    std::cerr << e.what() << '\n';
 }
